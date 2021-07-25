@@ -53,33 +53,18 @@
 					<a class="explore" href="#">показать все <img src="/static/geekshop/img/arrow.png" alt=""></a>
 				</div>
 				<div class="related-products clearfix">
+                    {% for product in related_products %}
 					<div class="block">
-						<a href="#"><img src="/static/geekshop/img/product-11.jpg" alt="">
+						<a href="#"><img src="/media/{{product.image}}" alt="">
 							<div class="text">
 								<img src="/static/geekshop/img/icon-hover.png" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
+								<h4>{{product.name}}</h4>
+								<p>{{ product.short_desc}} </p>
+                                <p>{{ product.category.name}} </p>
 							</div>
 						</a>
 					</div>
-					<div class="block">
-						<a href="#"><img src="/static/geekshop/img/product-21.jpg" alt="">
-							<div class="text">
-								<img src="/static/geekshop/img/icon-hover.png" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
-					<div class="block">
-						<a href="#"><img src="/static/geekshop/img/product-31.jpg" alt="">
-							<div class="text">
-								<img src="/static/geekshop/img/icon-hover.png" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
+                    {% endfor %}
 
 				</div>
 			</div>
