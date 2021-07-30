@@ -1,0 +1,22 @@
+
+  [
+    {
+      "category": "divan",
+      "name": "ƒиван белый",
+      "short_desc": "бла",
+      "image": "products_image/диван белый.jfif",
+      "description": "описание диванов",
+      "price": "15600.00",
+      "quantity": 4
+
+  },
+  {
+      "category": "stul",
+      "name": "—тул фамильный",
+      "short_desc": "бла бла бла",
+      "image": "products_image/product-4.jpg",
+      "description": "описание стульев",
+      "price": "4500.00",
+      "quantity": 13
+  }
+]
