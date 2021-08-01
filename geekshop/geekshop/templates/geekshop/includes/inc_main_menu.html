@@ -6,8 +6,15 @@
         <li><a href="{% url 'contacts' %}">контакты</a></li>
 
         {% if user.is_authenticated %}
-            <li><a href="{% url 'auth:edit' %}">{{ user.first_name|default:'Пользователь' }}</a></li>
+            <li><a href="{% url 'auth:edit' %}">{{ user.first_name|default:'Пользователь' }}</a>
+            <a href="{% url 'basket:view' %}">Корзина<span>{% if basket %} {{ basket|length }} {% endif %}</span></a>
+            </li>
+
         {% endif %}
+
+
+
+
         <li>
             {% if user.is_authenticated %}
                 <a href="{% url 'auth:logout' %}">выйти</a>
