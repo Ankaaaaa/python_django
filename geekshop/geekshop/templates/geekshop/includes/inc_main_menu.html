@@ -7,13 +7,15 @@
 
         {% if user.is_authenticated %}
             <li><a href="{% url 'auth:edit' %}">{{ user.first_name|default:'Пользователь' }}</a>
-            <a href="{% url 'basket:view' %}">Корзина<span>{% if basket %} {{ basket|length }} {% endif %}</span></a>
+            <a href="{% url 'basket:view' %}">Корзина
+                <span>
+                {% if basket %}
+                    {{ basket.0.total_cost|floatformat:0 }} руб
+                    ({{ basket.0.total_quantity }} шт.)
+                {% endif %}
+                </span></a>
             </li>
-
         {% endif %}
-
-
-
 
         <li>
             {% if user.is_authenticated %}
