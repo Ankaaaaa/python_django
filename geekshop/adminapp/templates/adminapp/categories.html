@@ -1,0 +1,75 @@
+
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Категории</h1>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fa fa-table mr-1"></i>
+                    Список
+                </div>
+                <div class="card-body">
+                   <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Категория</th>
+                            <th>Описание</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Категория</th>
+                            <th>Описание</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for category in objects %}
+                            <tr>
+                                <td>{{ category.name|title }}</td>
+                                <td>{{ category.description|title }}</td>
+                                <td class="text-center">
+                                    <button>
+                                        <a href={% url 'admin_staff:products' category.pk %}>
+                                            товары категории
+                                        </a>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    <button>
+                                        <a href={% url 'admin_staff:category_update' category.pk %}>
+                                            редактировать
+                                        </a>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    <button>
+                                        <a href={% url 'admin_staff:category_delete' category.pk %}>
+                                            удалить
+                                        </a>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+                <div class="card-footer">
+                    <a href="{% url 'adminapp:category_create' %}">
+                        <button class="btn btn-success">Создать категорию</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
