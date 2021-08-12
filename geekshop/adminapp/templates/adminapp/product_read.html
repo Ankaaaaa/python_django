@@ -1,0 +1,18 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Товары</h1>
+            <div class="card" style="width: 18rem;">
+                <img src="/media/{{ product.image }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <a href="{% url 'mainapp:product' product.pk %}" class="btn btn-primary">Go to web</a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

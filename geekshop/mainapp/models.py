@@ -66,6 +66,9 @@ class Product(models.Model):
         verbose_name='количество',
         default=0,
     )
+
+    is_active = models.BooleanField(default=True)
+
     def __str__(self):
         return f'{self.name} - {self.pk}'
 
