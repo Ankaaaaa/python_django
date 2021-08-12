@@ -54,6 +54,20 @@
                                         <i class="fa fa-times-circle"></i>
                                     {% endif %}
                                 </td>
+                                <td class="text-center">
+                                    <button>
+                                        <a href={% url 'adminapp:user_update' user.pk %}>
+                                            редактировать
+                                        </a>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    <button>
+                                        <a href={% url 'adminapp:user_delete' user.pk %}>
+                                            удалить
+                                        </a>
+                                    </button>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

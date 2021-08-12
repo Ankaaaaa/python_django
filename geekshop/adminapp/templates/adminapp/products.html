@@ -39,7 +39,7 @@
                         </tfoot>
                         <tbody>
                         {% for product in objects %}
-                            <tr>
+                            <tr style="{% if not product.is_active %}opacity: .5;{% endif %}">
                                 <td><img src="/media/{{ product.image }}"></td>
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.short_desc }}</td>
@@ -53,7 +53,7 @@
                                     </button>
                                 </td>
                                 <td class="text-center">
-                                    <button>
+                                    <button class="{% if not product.is_active %} invisible {% endif %}">
                                         <a href={% url 'admin_staff:product_update' product.pk %}>
                                             Радактировать
                                         </a>
@@ -62,7 +62,7 @@
                                 <td class="text-center">
                                     <button>
                                         <a href={% url 'admin_staff:product_delete' product.pk %}>
-                                            удалить
+                                            удалить/восстановить
                                         </a>
                                     </button>
                                 </td>
