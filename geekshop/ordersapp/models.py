@@ -3,6 +3,14 @@ from django.db import models
 
 from mainapp.models import Product
 
+
+class OrderIteamQuerySet(models.QuerySet):
+    def delete(self, *args, **kwargs):
+        for object in self:
+            object.product.quantity += object.quantity
+            object.product.save()
+        super(OrderIteamQuerySet, self).delete(*args, **kwargs)
+
 class Order(models.Model):
     FORMING = 'FM'
     SENT_TO_PROCEED = 'STP'
@@ -72,6 +80,7 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    objects = OrderIteamQuerySet.as_manager()
     order = models.ForeignKey(
         Order,
         related_name='orderitems',
@@ -89,3 +98,9 @@ class OrderItem(models.Model):
 
     def get_product_cost(self):
         return self.product.price * self.quantity
+
+
+    def delete(self):
+        self.product.quantity += self.quantity
+        self.product.save()
+        super(self.__class__, self).delete()
