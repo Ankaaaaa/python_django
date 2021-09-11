@@ -1,0 +1,25 @@
+
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Удаление пользователя</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Удаление пользователя
+            </div>
+            <div class="card-body">
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ objects }}, {{ objects.email }}
+                    <input class="form-control" type="submit" value="Удалить">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

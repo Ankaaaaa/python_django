@@ -1,0 +1,27 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid" style="width: 40%">
+        <h1 class="mt-4">Товары</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Редактирование/Создание
+            </div>
+            <div class="card-body">
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="form-control" type="submit" value="сохранить">
+                </form>
+            </div>
+            <button class="btn btn-info form-control last" >
+                <a href="{% url 'admin_staff:categories' %}" class=""> назад  </a>
+            </button>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,55 @@
+<div class="header clearfix">
+   <a href="{% url 'index' %}" class="logo"></a>
+    <ul class="menu">
+        <li><a href="{% url 'index' %}" class="active">домой</a></li>
+        <li><a href="{% url 'products:index' %}">продукты</a></li>
+        <li><a href="{% url 'contacts' %}">контакты</a></li>
+        {% if user.is_authenticated %}
+            <li class="auth">
+                <div class="dropdown">
+                    <a href="#" class=" dropdown-toggle" type="button" id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="padding: 1px">
+                        {{ user.first_name|default:'Пользователь' }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <li>
+                            <a class="dropdown-item inline-block" href="{% url 'auth:edit' %}">Профиль</a>
+                        </li>
+                        {% if user.is_staff %}
+                            <li>
+                                <hr class="dropdown-divider inline-block">
+                            </li>
+                            <li>
+                                <a class="dropdown-item inline-block" href="{% url 'admin_staff:users' %}">Менеджер</a>
+                            </li>
+                        {% endif %}
+                        {% if user.is_superuser %}
+                            <li>
+                                <a class="dropdown-item inline-block" href="/admin/">
+                                    Админка
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </li>
+            </li>
+            <a href="{% url 'basket:view' %}">
+                <span>
+                    {% if basket %}
+                        {{ basket.0.total_cost|floatformat:0 }} руб
+                        ({{ basket.0.total_quantity }} шт )
+                    {% endif %}
+                </span>
+            </a>
+        {% endif %}
+        <li>
+            {% if user.is_authenticated %}
+                <a href="{% url 'auth:logout' %}">выйти</a>
+            {% else %}
+                <a href="{% url 'auth:login' %}">войти</a>
+            {% endif %}
+        </li>
+    </ul>
+    <a href="#" class="search" style="left: 730px; top: 68px"></a>
+</div>
