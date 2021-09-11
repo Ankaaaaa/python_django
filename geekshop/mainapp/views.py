@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def get_same_products(hot_product):
-    same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
+    same_products = Product.objects.filter(is_active=True).select_related('category').exclude(pk=hot_product.pk)[:3]
     return same_products
 
 
@@ -20,11 +20,10 @@ def get_hot_product():
 
 
 def products(request, pk=None, page=0):
-    title = 'продукты'
-    links_menu = ProductCategory.objects.all()
-
+    title = 'продукты/каталог'
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
+    links_menu = ProductCategory.objects.all()
 
     if pk is not None:
         if pk == 0:
@@ -50,7 +49,7 @@ def products(request, pk=None, page=0):
             'products': products_paginator,
             'hot_product': hot_product,
         }
-        return render(request, 'mainapp/products.html', context)
+        return render(request=request, template_name='mainapp/products.html', context=context)
 
     products = Product.objects.all().order_by('price')
 
