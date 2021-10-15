@@ -4,7 +4,7 @@ class ProductCategory(models.Model):
     name = models.CharField(
         verbose_name='имя',
         max_length=64,
-        unique= True,
+        unique=True,
     )
     description = models.TextField(
         verbose_name='описание',
@@ -14,6 +14,8 @@ class ProductCategory(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
