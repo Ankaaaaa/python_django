@@ -51,7 +51,7 @@ class Basket(models.Model):
 
 
     @cached_property
-    def  get_items_cahed(self):
+    def get_items_cahed(self):
         return self.user.basket.select_related()
 
     @staticmethod
@@ -66,14 +66,14 @@ class Basket(models.Model):
     @property
     def total_quantity(self):
         items = self.get_items_cahed
-        totalquantity = sum(list(map(lambda x: x.quantity, items)))
-        return totalquantity
+        total_quantity = sum(list(map(lambda x: x.quantity, items)))
+        return total_quantity
 
     @property
     def total_cost(self):
         items = self.get_items_cahed
-        totalcost = sum(list(map(lambda x: x.product_cost, items)))
-        return totalcost
+        total_cost = sum(list(map(lambda x: x.product_cost, items)))
+        return total_cost
 
     def save(self, *args, **kwargs):
         if self.pk:

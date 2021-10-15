@@ -105,7 +105,7 @@ class OrderItem(models.Model):
         self.product.save()
         super(self.__class__, self).delete()
 
-    def get_summart(self):
+    def get_summary(self):
         items = self.orderitems.select_related()
         return {
             'total_cost': sum(list(map(lambda x: x.quantity * x.product.price, items))),
